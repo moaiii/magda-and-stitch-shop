@@ -1,34 +1,26 @@
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
+import ProductCatalogue from '../components/product/product-catalogue'
+import CategoriesCatalogue from '../components/category/category-catalogue'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPosts } from '../lib/api'
+import { getAllProducts, getAllCategories } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
 
-export default function Index({ allPosts }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+export default function Index({ allProducts, allCategories }) {
   return (
     <>
       <Layout>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>Magda&Stitch</title>
         </Head>
         <Container>
           <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
+          {allCategories.length > 0 && (
+            <CategoriesCatalogue categories={allCategories} />
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {allProducts.length > 0 && (
+            <ProductCatalogue products={allProducts} />
+          )}
         </Container>
       </Layout>
     </>
@@ -36,16 +28,27 @@ export default function Index({ allPosts }) {
 }
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
-    'title',
+  const allCategories = getAllCategories([
+    'name',
+    'priceRange',
+    'excerpt',
+    'coverImage',
+    'slug',
+    'date',
+    'ogImage',
+    'skuCode',
+  ])
+
+  const allProducts = getAllProducts([
+    'name',
+    'price',
     'date',
     'slug',
-    'author',
     'coverImage',
     'excerpt',
   ])
 
   return {
-    props: { allPosts },
+    props: { allProducts, allCategories },
   }
 }

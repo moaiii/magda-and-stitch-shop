@@ -13,3 +13,8 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+
+* {
+  /* border: 1px solid rgba(255, 0, 0, 0.2); */
+  font-family: 'Playfair Display', serif;
+}

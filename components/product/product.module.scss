@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.preview {
+  max-width: 25%;
+  $preview-width: calc(100vw / 4);
+  width: $preview-width;
+  margin: 0.5rem;
+
+  &:hover {
+    button {
+      transition: opacity 0.25s ease;
+      opacity: 1;
+    }
+  }
+}
+
+.previewInfo {
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    margin: 0.5rem 0 0 0;
+    background-color: #4398a2;
+    color: white;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+}
+
+.previewName {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.previewPrice {
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.previewCard {
+  height: 500px;
+  width: 100%;
+  background-image: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.catalogue {
+}
+
+.catalogueList {
+  width: 100%;
+  display: flex;
+}
